@@ -1,0 +1,41 @@
+\contentsline {section}{Table Of Contents}{1}{}%
+\contentsline {section}{\numberline {1}Abstract}{2}{}%
+\contentsline {section}{\numberline {2}Proposal}{2}{}%
+\contentsline {subsection}{\numberline {2.1}Introduction}{2}{}%
+\contentsline {subsection}{\numberline {2.2}Motivation}{2}{}%
+\contentsline {subsection}{\numberline {2.3}Constraints}{2}{}%
+\contentsline {subsection}{\numberline {2.4}Schedule}{2}{}%
+\contentsline {subsubsection}{\numberline {2.4.1}Gantt Chart}{2}{}%
+\contentsline {subsection}{\numberline {2.5}Costs}{2}{}%
+\contentsline {subsection}{\numberline {2.6}Deliverables}{2}{}%
+\contentsline {subsection}{\numberline {2.7}Conclusion}{2}{}%
+\contentsline {section}{\numberline {3}Team Organization}{3}{}%
+\contentsline {subsection}{\numberline {3.1}Background}{3}{}%
+\contentsline {subsubsection}{\numberline {3.1.1}Jeremy Munson}{3}{}%
+\contentsline {subsubsection}{\numberline {3.1.2}Bryant}{3}{}%
+\contentsline {subsubsection}{\numberline {3.1.3}Braeden}{3}{}%
+\contentsline {subsection}{\numberline {3.2}Responsibilities}{3}{}%
+\contentsline {subsubsection}{\numberline {3.2.1}Jeremy Munson}{3}{}%
+\contentsline {subsubsection}{\numberline {3.2.2}Braeden}{3}{}%
+\contentsline {subsubsection}{\numberline {3.2.3}Bryant}{3}{}%
+\contentsline {section}{\numberline {4}Initial Research}{3}{}%
+\contentsline {subsection}{\numberline {4.1}Project Feasibility}{3}{}%
+\contentsline {subsubsection}{\numberline {4.1.1}Oscilloscope}{4}{}%
+\contentsline {subsection}{\numberline {4.2}Similar Products}{4}{}%
+\contentsline {subsubsection}{\numberline {4.2.1}NI Instruments Elvis III}{4}{}%
+\contentsline {section}{\numberline {5}Project Overview}{4}{}%
+\contentsline {subsection}{\numberline {5.1}Design Criteria}{4}{}%
+\contentsline {subsection}{\numberline {5.2}Overview}{4}{}%
+\contentsline {subsection}{\numberline {5.3}Architecture Block Diagram}{4}{}%
+\contentsline {subsection}{\numberline {5.4}Interfaces}{5}{}%
+\contentsline {subsubsection}{\numberline {5.4.1}USB}{5}{}%
+\contentsline {subsubsection}{\numberline {5.4.2}Parallel}{5}{}%
+\contentsline {subsubsection}{\numberline {5.4.3}QSPI}{5}{}%
+\contentsline {section}{\numberline {6}Research of Proposed Solutions}{5}{}%
+\contentsline {subsection}{\numberline {6.1}Gsps ADC: HMCAD2011}{5}{}%
+\contentsline {subsection}{\numberline {6.2}Signal Generator}{5}{}%
+\contentsline {subsection}{\numberline {6.3}USB 3.2 Gen 1 Interface}{5}{}%
+\contentsline {subsection}{\numberline {6.4}Artix-7 FPGA}{6}{}%
+\contentsline {subsection}{\numberline {6.5}STM32, Providing ADC and DAC for logic analyzer}{6}{}%
+\contentsline {subsection}{\numberline {6.6}Power Supply}{6}{}%
+\contentsline {subsection}{\numberline {6.7}Bread Board Unit}{6}{}%
