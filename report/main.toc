@@ -39,3 +39,5 @@
 \contentsline {subsection}{\numberline {6.5}STM32, Providing ADC and DAC for logic analyzer}{6}{}%
 \contentsline {subsection}{\numberline {6.6}Power Supply}{6}{}%
 \contentsline {subsection}{\numberline {6.7}Bread Board Unit}{6}{}%
+\contentsline {subsection}{\numberline {6.8}NGScopeClient}{6}{}%
+\contentsline {section}{\numberline {7}References}{7}{}%
