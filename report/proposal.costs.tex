@@ -1,2 +1,29 @@
 \subsection{Costs}
-	The costs of a prototype device are much higher than a mass produced project. For example, the STM32G474 that we will use 6-10 instances of on our pcb.
+	The costs of a prototype device are much higher than a mass produced project. For example, the STM32G474 that we will use 6-10 instances of on our design will cost $\$9.32 $ in quantity 10-25, but would cost $\$4.53$ in quantity 1000. Once the design is finalized, we will provide two budgetary numbers: The cost of development, and the estimated cost-per-unit at a quantity of 200. 
+	
+	Preliminarily, the budget items for development are:
+	
+	\begin{itemize}
+		\item Prototype PCB Manufacturing: \$300
+		\item 28x stm32g474 devices: \$ 250
+		\item 5x EZ USB FX3: \$130
+		\item 4x Artix 7 xc7a36t-1-fgg256 FPGA Chips: \$180
+		\item Analog Electronics (opamps etc): \$70
+		\item Passive components, resistors, capacitors, etc: \$70
+		\item Hardware, connectors, misc: \$130
+	\end{itemize}
+
+	Preliminarily, we expect the complete product at qty of 200 to be (per unit):
+	
+	\begin{itemize}
+		\item PCB Manufacturing: \$3
+		\item 8x stm32g474 devices: \$ 40
+		\item 1x EZ USB FX3: \$23
+		\item 1x Artix 7 xc7a36t-1-fgg256 FPGA Chips: \$27
+		\item Analog Electronics (opamps etc): \$7
+		\item Passive components, resistors, capacitors, etc: \$2
+		\item Hardware, connectors, misc: \$10
+	\end{itemize}
+
+	For a unit parts cost of $\approx\$112$. This places this device at less than 5\% the cost of the Elvis III, before manufacturing costs. The manufacturing costs are harder to estimate, but  we do not expect them to be greater than the parts cost.
+	
