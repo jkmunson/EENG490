@@ -1,0 +1,12 @@
+Am I working on the FPGA? No, I'm working on the MCU
+*****=====*****=====*****=====*****=====*****=====*****=====*****=====*****=====*****=====*****
+ADC will output a number of bits indicating the voltage measured.
+The FPGA needs to be able to detect these bits (and store them?).
+DDR is double data rate and refers to the FPGA getting ADC data on the rising and falling edge of the clock.
+Info to EZ USB from FPGA and vice versa.
+*****=====*****=====*****=====*****=====*****=====*****=====*****=====*****=====*****=====*****
+MCU
+Read up on the STM32G474
+Need external syncronized clock
+Use QSPI peripheral to output data to FPGA, configure it in register mode with dual bank mode.
+--Example of DAC in IDE called signal generation.
