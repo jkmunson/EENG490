@@ -1,0 +1,38 @@
+3/30/24
+Started EZ USB dev board design
+Decided on 50x50mm 6-layer PCB + stencils, whichi will cost ~$19 + ship from jlcpcb
+There is no footprint or symbol for the EZ USB in kicad -> Imported from samacsys and verified footprint & symbol briefly
+
+For the crystal Oscilator, a 19.2Mhz crystal & appropriate load caps are required. Added to mouser cart.
+https://www.mouser.com/ProductDetail/ECS/ECS-192-7-36B-CKY-TR?qs=l7cgNqFNU1gBRjqdHCSS7A%3D%3D
+CC0402BRNPO9BN7R0
+
+For the watchdog timer, a 32khz crystal is required. These crystals are expensive (>$1), So I'm omitting them.
+
+The clock source selection requires a pull up or pull down on FSLC pins. Placing a solder bridge jumper to gnd, and a resistor network for pull up.
+Pulling up to "CVDDQ" because that is the IO's power domain.
+
+Now considering the connector between the pcb and the computer. For USB 2.0, this would be the Micro USB or Mini USB, or other connectors.
+https://community.infineon.com/t5/Knowledge-Base-Articles/Designing-Type-C-products-based-on-EZ-USB-FX3-and-CX3/ta-p/251806
+
+3/31/24
+USB C is somewhat complex to implement (requiring an additional MUX chip) but can provide more power.
+Do we need more power? -> The EZ USB draws 200mA for the core, 60mA for the USB, and up to 16mA per IO, (but this much likely isn't necessary).
+We are planning to do 32 data + clk + some control lines of I/O, so if we call that 36 lines @ 16mA then the total (max) power draw is 640mA for the I/O.
+This gives a total (absolute max) power draw for the chip at 836mA*
+
+It is worth noting, that the chip operates at a core voltage of 1.2v, and I/O voltages of 3.3v(by our selection).
+
+836mA is below the USB 3.0 type A spec of 900mA, so we could safely use linear voltage regulators for these power supplies, and still have sufficient power delivery from a usb 3.0 type A port.
+
+Assuming 80% efficiency of the buck regulators I intend to use, we will need (1.2v/5v)/.8 * 260mA + (3.3v/5v)/.8 * 640mA = 78ma + 528ma = 606mA (maximum) of power from the usb port. This leaves a decent margin on the power a USB 3 port can provide.
+
+So, all of that said, I believe that the best choice for a usb plug for our device is going to be a USB 3 A/B plug, and then we purchase USB 3 type A and C to USB 3 AB cables to allow the device to be used on either a desktop with 3.0 type A ports, or a laptop with type c ports.
+
+By using the type AB plug, we avoid the added complexity and cost of type C and the connection switching MUX.
+
+I ordered the appropriate receptacles from aliexpress. (The receptacles were $3/ea on mouser, compared to 40 for $5 shipped on aliexpress.)
+I ordered appropriate cables from amazon
+
+4/1/24
+Met with team
