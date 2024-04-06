@@ -5,4 +5,12 @@ Need external syncronized clock
 Use QSPI peripheral to output data to FPGA, configure it in register mode with dual bank mode.
 --Example of DAC in IDE called signal generation.
 4/2/2024
-Looked into ST32G474. First attempted configuration of ADC, DAC, DMA, and PWM. Still have to look through the DMA example and better understand the MCU
+Looked into ST32G474. First attempted configuration of ADC, DAC, DMA, and PWM. Still have to look through the DMA example and better understand the MCU. 
+Test by Friday 5k values going out to the DAC being triggered by a PWM.
+4/4/2024
+Configured DAC, DMA, and Timer but still need to test with o-scope.
+4/5/2024
+Looked at STM tutorial videos:
+https://www.youtube.com/embed/pLsAhJ8umJk?cc_load_policy=1&autoplay=1&list=PL8n_tqwYdzVAd_OxaKnfxBrvcGwR8kSJo
+https://www.youtube.com/watch?v=RQJkvEv-3dI
+Created buffer with test values and ran it but o-scope tests show nothing.
