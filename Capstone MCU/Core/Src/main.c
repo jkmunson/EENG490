@@ -21,7 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stm32g4xx_ll_bus.h>
+#include <stdio.h>
+#include <stdbool.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -41,23 +43,22 @@
 
 /* Private variables ---------------------------------------------------------*/
 DAC_HandleTypeDef hdac1;
-DMA_HandleTypeDef hdma_dac1_ch1;
 
 TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
 uint32_t DAC_Buffer[DAC_BUFF_SIZE];
 uint16_t i = 0;
+bool DAC_state = true;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_DMA_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_DAC1_Init(void);
 /* USER CODE BEGIN PFP */
-void Toggle_Pin(void);
+extern void Toggle_Pin(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -93,7 +94,6 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_TIM2_Init();
   MX_DAC1_Init();
   /* USER CODE BEGIN 2 */
@@ -106,12 +106,14 @@ int main(void)
 	  }
 	  DAC_Buffer[i] = i * 2;
   }
+  HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 4096);
   //Start timer 2
   if(HAL_OK != HAL_TIM_Base_Start_IT(&htim2))
 	  Error_Handler();
   //Start DAC
-  if(HAL_OK != HAL_DAC_Start_DMA(&hdac1, DAC_CHANNEL_1, DAC_Buffer, DAC_BUFF_SIZE, DAC_ALIGN_12B_R))
-	  Error_Handler();
+  HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);
+//  if(HAL_OK != HAL_DAC_Start_DMA(&hdac1, DAC_CHANNEL_1, DAC_Buffer, DAC_BUFF_SIZE, DAC_ALIGN_12B_R))
+//	  Error_Handler();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -197,7 +199,7 @@ static void MX_DAC1_Init(void)
   sConfig.DAC_DMADoubleDataMode = DISABLE;
   sConfig.DAC_SignedFormat = DISABLE;
   sConfig.DAC_SampleAndHold = DAC_SAMPLEANDHOLD_DISABLE;
-  sConfig.DAC_Trigger = DAC_TRIGGER_T2_TRGO;
+  sConfig.DAC_Trigger = DAC_TRIGGER_SOFTWARE;
   sConfig.DAC_Trigger2 = DAC_TRIGGER_NONE;
   sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
   sConfig.DAC_ConnectOnChipPeripheral = DAC_CHIPCONNECT_EXTERNAL;
@@ -258,23 +260,6 @@ static void MX_TIM2_Init(void)
 }
 
 /**
-  * Enable DMA controller clock
-  */
-static void MX_DMA_Init(void)
-{
-
-  /* DMA controller clock enable */
-  __HAL_RCC_DMAMUX1_CLK_ENABLE();
-  __HAL_RCC_DMA1_CLK_ENABLE();
-
-  /* DMA interrupt init */
-  /* DMA1_Channel1_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
-
-}
-
-/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -293,10 +278,22 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 //Test pin
-//void Toggle_Pin(void)
-//{
-//	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
-//}
+void Toggle_Pin(void)
+{
+	if(DAC_state == true)
+	{
+		HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 4096);
+		HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);
+		DAC_state = false;
+	}
+	if(DAC_state == false)
+	{
+		HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 2048);
+		HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);
+		DAC_state = true;
+	}
+	//HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
+}
 /* USER CODE END 4 */
 
 /**
