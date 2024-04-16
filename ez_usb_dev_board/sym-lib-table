@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "EZ_USB")(type "KiCad")(uri "${KIPRJMOD}/EZ_USB.kicad_sym")(options "")(descr ""))
+  (lib (name "EZ_USB_SYM")(type "KiCad")(uri "${KIPRJMOD}/sym/CYUSB3014-BZXC.kicad_sym")(options "")(descr ""))
+)
