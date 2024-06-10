@@ -1,4 +1,18 @@
 \subsection{Interfaces}
 	\subsubsection{USB}
-	\subsubsection{Parallel}
-	\subsubsection{QSPI}
+	The design was intended to communicate over USB 3.0, to provide a high-bandwidth connection to the computer. Because the EZ USB software became unavailable partway through the project, what we presented did not have the USB interface functional. Going forward, it is likely that Infineon will make the software available again, perhaps after some outside pressure. The actual software aspect of using the USB interface is very short: We are to use an existing driver and only have to write a few hundred lines of code to aggregate and forward packets from multiple sources.
+
+	\subsubsection{QSPI, OSPI}
+	The individual analog tile boards are to communicate with either the FPGA or EZ USB over OSPI (Octal SPI) or QSPI (Quad SPI). This allows sufficient bandwidth to the computer to capture the entirety of the sampled data; allowing capture of waveform lengths only limited by the connected computer's memory. Since the EZ USB could not be made functional in time for the demonstration, the QSPI functionality remained proven, but not used for the demo.
+	
+	The Frequency of this interface is up to 166mhz, with at least 50mhz necessary to achieve the full data rate of the device. Because digital signals are made of many harmonics much higher than the base frequency of the signal, we must make extra considerations in the design. This requires the use of impedance matched transmitters, receivers, and cable. The system was designed to use 90 ohm impedance on the PCB traces, and have swappable termination/matching resistors so that the device could be tuned. The cable to be used is 0.025 inch pitch ribbon cable with signals in a GSGSG... pattern - one ground between each signal, and the end signals as grounds. This creates a consistent electromagnetic environment for the signals. The cable did not come with an impedance spec for this condition, but applying the formulas for impedance of a microstrip as a rough approximation yielded an expected impedance of $\approx80\Omega$. The choice of 90 ohm traces, terminators, and matching resistors reflects that it is generally better to overshoot the impedance a little than undershoot.
+	
+	Another effect is the transmission delay in the cable and pcb traces. Although this effect isn't strongly prevalent in these signal speeds, all PCB traces for the OSPI and QSPI signals were length matched within 0.2mm using the PCB design software.
+	
+	\subsubsection{Backup: UART}
+	Since the EZ USB part of the project became blocked, we still needed a way to communicate with the host computer to relay data. Fortunately, in the development board design we did include connections for a backup UART connection. This backup connection runs at a rate of 16Mbaud, which is very fast for UART without synchronization. Effort was made to maintain signal integrity by isolating this signal from other sources of interference. 
+	
+	Additionally, most operating systems do not have the capability to set a baud rate above 4Mbaud easily. For this purpose, Jeremy wrote a program "baud set" that interacts with the target operating systems and sets this baud rate in spite of operating system limitations.
+	
+	The Additional speed is very nescessary, as even a sample rate of 1Msps requires 10Mbaud to fully transmit it's data.
+	

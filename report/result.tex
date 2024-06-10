@@ -1,0 +1,44 @@
+\section{BOM for complete project}
+\begin{itemize}
+	\item \$0.81 PCB
+	\item \$4.36 STM32G474VEH6
+	\item \$0.47 Rotary encoder with knob
+	\item \$0.72 10mhz/1pA bias current fast quad opamps
+	\item \$0.32 STM32G030
+	\item \$2.80 2.8" 240x320 TFT Touch Display
+	\item \$0.09 Microsd card slot
+	\item \$0.32 Trim Potentiometers
+	\item \$0.27 Voltage Regulator
+	\item \$0.30 Buttons
+	\item \$0.06 Volume Wheel
+	\item \~\$1 discreet components (resistors, capacitors, mosfets, diodes, LEDs, inductors, precision crystal resonator)
+	\item \$3.00 256Mb flash memory chips x 2 (Optional, not fitted)
+	\item \$8.46 256Mb external PSRAM x2 (Optional, not fitted)
+	\item \$4.84 1.27mm programming cable header (Development only, not be be fitted in production)
+\end{itemize}
+
+Total parts cost of ~\$11.57 per unit, at 1K units, omitting optional components.
+
+Assembly cost: \$0.95/ea + \$50 setup fee + \$15 Stencil fee
+
+Total cost for each complete unit: \$12.60
+(Plus shipping, tariffs, etc)
+
+This, of course, does not include a case or battery. The battery could be a few dollars, and a proper plastic injection molded case would have a unit cost of about \$1 all inclusive, that includes labor to install the electronics and test the device.... After ~\$6000 for creation of the molds. (Jeremy's family used to own a plastic molding company, where he did some CAD and Mold building work. This price is an estimate from that experience.)
+
+All together, in quantity, after shipping costs, we could call it \$15/ea assembled. There are some upfront costs that would make the early units more expensive. This would suggest a minimum retail price of ~\$45 for a viable company.
+
+This is about half the cost of other, dramatically less capable products on the market. IE, DSO Nano, FNRSI, Hantek offerings with only one or two channels at 5msps or less, no (or poor) measurement software to integrate with, no signal generator, and lower impedance probes, IE 100Kohm-1Meg, that make them unsuited to measure sensitive signals.
+
+\section{Project Result}
+Although we did not accomplish everything we set out to do, we did successfully create a working product to demo that "Proofs" all the concepts in the design.
+
+The main part of the project that is missing is the EZ USB board to aggregate data from multiple sources. This was not strictly within our control to prevent, as Infineon shut down the software servers without alternatives or notice, not us. Certainly, the software will become available again sometimes soon, as Infineon still offers the Cypress catalog, including the EZ USB chip in our project. With a little time, we are sure that Infineon could be contacted and would provide the needed files also. Once these are available, our software work was already nearly complete.
+
+The final analog tile provides all of the 5 fast ADC devices on multiple channels, and the 4 fast DAC channels for signal generation. This functionality is fully implemented in the design.
+
+The software integration with NGSCope client went very smoothly, and provides a huge suite of tools to perform analysis on the loaded data.
+
+The analog tile board successfully implements power supplies, input and output buffers at 10Meg Ohm input/50 ohm output impedances, output signal on/off switching with FET Switches, and use of an LCD for setting options.
+
+Overall, we believe that we did significantly more work on this project than most other teams in capstone, and applied a wealth of real-world design tools in this project. We faced some unique challenges between the software shutdown issues and team member illness, so the project lacks the completeness and polish that we would otherwise like.
