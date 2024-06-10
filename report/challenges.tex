@@ -1,0 +1,34 @@
+Every project has it's unexpected challenges on the way, and this one is no different. There were two main challenges we faced: Team member illness, and software becoming unavailable part-way through the project.
+
+\subsection{Team Member Illness}
+One of our team members experienced lengthy illness through the second quarter of capstone, and was unable to contribute at the level that they intended.
+
+\subsubsection{Impact}
+Project Modification: The FPGA design part of the project, which was a lofty goal, was cut early in the quarter because it became clear that, with the only team member able to perform that work ill, it wasn't likely to be possible to complete it in the timeframe.
+
+\subsection{Software Unavailability: Cypress Semiconductor Acquisition}
+One of the biggest disruptions to the project was the acquisition of Cypress Semiconductor by Infineon in 2020. Cypress semiconductor designed and supports the EZ USB FX3 chip that forms the cornerstone of our design. You may initially think, "How can an acquisition all the way back in 2020 be affecting this project?". Well, that is because \textbf{Infineon decided to shut down all of the servers that provided the documentation and software tools for Cypress products in May 2024}. 
+
+While they did migrate some of the software and documentation downloads, all of the (many) inter-document links were broken, and, importantly, so was the software. This is because the software provided for doing the programming of the FX3 device relied on external servers to launch and download drivers and libraries. Since those servers became unavailable, what had been mostly completed work on our project suddenly became unusable.
+
+\subsubsection{Impact}
+LESSON: SECURE YOUR SOFTWARE DEPENDENCIES, AND DO NOT RELY ON TOOLS THAT REQUIRE VENDOR SERVERS TO FUNCTION.
+
+This had severe impact on our project. We had already spent close to 300 man-hours designing a PCB using the EZ USB FX3, and 40 man hours configuring software for the device. Using this PCB by itself *WAS* the planB for this project, and was effectively complete when the software ceased to function.
+
+With the FPGA part already removed, this meant that we had no way left to aggregate data from multiple "analog tile" boards in our final project. This meant that, at the very least, we are reduced to a single one of our analog tiles.
+
+Additionally, the EZ USB was performing the critical function of providing a high-speed interface to our analog tile boards. Without any way to communicate with the analog tile board over OSPI, we became limited to only 16Mbaud UART. This limits us to a data acquisition rate of ~1MSPS on a single channel. That limitation is extremely frustrating, but did not prevent the preparation of a "proof of concept" demonstration for demo day with limited channels and bandwidth.
+
+To summarize, This resulted in scrapping over 300 hours of work, and the EZ USB PCB part of the project, and a severely limited demonstration of our project.
+
+\subsection{Software Unavailability: ST Microelectronics IDE Issues}
+Wait, another problem with software availability? Yes. The ST Microelectronics STM32CubeIDE software had previously functioned primarily offline, only connecting to online servers to download firmware packages the first time they are needed, caching them locally. Late last year, the IDE was updated to be Always-Online, and require a login with an ST Microelectronics account in order to function. 
+
+Because we judged this to be too large of a risk, we had proceeded to use a prior version of the IDE that was still fully functional.
+
+During the last couple weeks of the project, the servers stopped providing file downloads to users of the old version of the IDE. This wouldn't have been an issue, but every team member did not have the firmware files for the exact chip we were using installed, as we were using a similar (but not identical) chip on a development board alongside the project board.
+
+\subsubsection{Impacts}
+This was less destructive than the Cypress problems, but still resulted in a few days of lost time. We ultimately migrated over to the latest version of the IDE, and one team member spent some hours manually editing configuration files to get everything to sync up.
+
